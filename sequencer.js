@@ -21,6 +21,7 @@ var app = new Vue({
         playing: false,
         tempo: 128,
         playhead: 0,
+        expanded: 4,
         steps: fourfour
     },
     methods: {
@@ -64,11 +65,11 @@ var app = new Vue({
         stepq: function (track, step) {
             return this.steps[track - 1][step - 1]
         },
-        setstep: function (track, step) {
+        setstep: function (track, step, vel) {
             if (this.steps[track - 1][step - 1] == null) {
-                this.steps[track - 1][step - 1] = 1
-            } else if (this.steps[track - 1][step - 1] === 1) {
-                this.steps[track - 1][step - 1] = 127
+                this.steps[track - 1][step - 1] = vel
+            } else if (this.steps[track - 1][step - 1] === 1 && vel == 127) {
+                this.steps[track - 1][step - 1] = vel
             } else {
                 this.steps[track - 1][step - 1] = null
             }

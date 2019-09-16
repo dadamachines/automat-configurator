@@ -8,8 +8,7 @@
   <meta name="description" content="">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <script src="https://unpkg.com/webmidi@2.2.0/webmidi.min.js"></script>
-  <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-  <script src="main.js"></script>
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="jsr.css" >
@@ -37,16 +36,22 @@
         <button v-if="playing" v-on:click="playToggle">pause</button>
         <button v-else v-on:click="playToggle">play</button>
     
-        <input v-model.number="tempo" type="number">
+        <input v-model.number="tempo" type="number" class="bpminput">
     
-        <div v-for="track in 12">
+        <div v-for="track in expanded">
             <div class="row">
                 <button v-for="step in 16" class="step"
                     v-bind:class="{on: (stepq(track,step)==1),accent: (stepq(track,step)==127), playhead: (step-1 === playhead-1)}"
-                    v-on:click="setstep(track,step)">
+                    v-on:click="setstep(track,step,1)"
+                    v-on:dblclick="setstep(track,step,127)">
                 </button>
             </div>
         </div>
+        <p>
+            <a v-if="(expanded == 4)" v-on:click="expanded=12" href="#">show all tracks</a>
+            <a v-else v-on:click.stop="expanded=4" href="#">hide tracks</a>
+
+        </p>
     </div>
 
 
@@ -444,6 +449,9 @@
                             updateMaxMinRange(12, input, value);
                             });
     </script>
+
+  <script src="main.js"></script>
+
   <script src="sequencer.js"></script>
 
 </body>

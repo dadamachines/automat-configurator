@@ -205,7 +205,7 @@ table.config__table td {
   pointer-events: all;
 }
 
-.step {
+button.step {
   width: 30px;
   height: 30px;
   border: 2px solid #222;
@@ -216,7 +216,6 @@ table.config__table td {
   background-color: white;
   border-radius: 3px;
 }
-
 .step.on {
   background-color: lightblue;
 }
@@ -226,4 +225,15 @@ table.config__table td {
 
 .step.playhead {
   background-color: red;
+}
+
+.bpminput {
+  border: 3px solid #121212;
+  font-family: Lelo-Regular;
+  font-size: 18px;
+  padding: 0.35em;
+  margin-top: 3px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 4em;
 }

@@ -173,6 +173,8 @@ function connect (){
     WebMidi.disable();
   }
 
+
+
   WebMidi.enable(function (err) {
     var conne = document.getElementById("connected")
 
@@ -198,7 +200,16 @@ function connect (){
   }, true);
 }
 
-connect()
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+if (isChrome) {
+    connect()
+} else {
+    var conne = document.getElementById("connected")
+
+    conne.innerText = "please open this page in Google Chrome or Chromium (because of web midi support)";
+    conne.style.color = "red";
+}
 
 function changeProgram(num){
   output.sendProgramChange(num);
