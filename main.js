@@ -189,6 +189,9 @@ function connect (){
         whencon.className = ""
         var recon = document.getElementById("reconbut")
         recon.style = ""
+        if(app){
+            app.stop();
+        }
       })
 
       if (output && input) {

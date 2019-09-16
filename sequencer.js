@@ -58,6 +58,10 @@ var app = new Vue({
             }
             Vue.set(this.steps, fourfour)
         },
+        stop: function(){
+            clearTimeout(timerID);
+            this.playing = false;
+        },
         playToggle: function () {
             if (this.playing !== false) {
                 clearTimeout(timerID);
