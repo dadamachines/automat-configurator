@@ -3,6 +3,7 @@ var input = undefined
 var currentConfig = undefined
 var timeoutId = undefined
 var updatingUIFromConfig = false
+var notes = []
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -168,12 +169,11 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 
+
 function connect (){
   if (WebMidi.enabled) {
     WebMidi.disable();
   }
-
-
 
   WebMidi.enable(function (err) {
     var conne = document.getElementById("connected")
@@ -189,7 +189,6 @@ function connect (){
         whencon.className = ""
         var recon = document.getElementById("reconbut")
         recon.style = ""
-        
       })
 
       if (output && input) {
@@ -348,6 +347,7 @@ function showSysexConfig(configData){
 
             var list1 = document.getElementById('m' + (i + 1));
             var note1 = document.getElementById('n' + (i + 1));
+            notes[i] = nvData[i + numPins];
             var curve1 = document.getElementById('c' + (i + 1));
             var jsr = jsrArray[i];
 
@@ -428,6 +428,10 @@ function writeSysex(configData){
         arrayOut.set(configData, preArray.length);
 
         output.sendSysex([0, 0x21, 0x3D], Array.from(arrayOut));
+    }
+    for(i=0;i<12;i++){
+        var note = document.getElementById('n' + (i + 1));
+        notes[i] = note.value
     }
 }
 

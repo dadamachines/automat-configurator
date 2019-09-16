@@ -31,7 +31,7 @@ var app = new Vue({
             if (output) {
                 for (t = 0; t < 12; t++) {
                     if (this.steps[t][this.playhead - 1]) {
-                        output.playNote(t + 1, 1, {
+                        output.playNote(notes[t], 1, {
                             duration: 30,
                             rawVelocity: true,
                             velocity: this.steps[t][this.playhead - 1]
