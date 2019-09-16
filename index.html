@@ -7,11 +7,12 @@
   <title>automat configurator</title>
   <meta name="description" content="">
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <script src="webmidi.js"></script>
+  <script src="https://unpkg.com/webmidi@2.2.0/webmidi.min.js"></script>
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script src="main.js"></script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="jsr.css" >
-
 </head>
 
 <body>
@@ -30,6 +31,25 @@
       <button onclick="connect()">Reconnect</button>
     </p>
     <hr>
+    <div id="when-connected">
+    <h2>sequencer</h2>
+    <div id="sequencer">
+        <button v-if="playing" v-on:click="playToggle">pause</button>
+        <button v-else v-on:click="playToggle">play</button>
+    
+        <input v-model.number="tempo" type="number">
+    
+        <div v-for="track in 12">
+            <div class="row">
+                <button v-for="step in 16" class="step"
+                    v-bind:class="{on: (stepq(track,step)==1),accent: (stepq(track,step)==127), playhead: (step-1 === playhead-1)}"
+                    v-on:click="setstep(track,step)">
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <h2>output settings</h2>
 
     <p>Change the behavior of your automat here.</br>Calibrate the velocity range for each output.</br>Set the first handle on the slider for quietest sound and the second for the loudest.</br> To use note on/off without velocity put both handles in the leftmost position with the values 0-0.</br></br>Upload the configuration to your automat with pressing "Write config"</br><b>PLEASE ONLY DO THAT AFTER FINISHING THE CONFIGURATION FOR ALL OUTPUTS</b>.</p>
@@ -226,12 +246,15 @@
                 </tr>
             </table>
 <!--    </form>  -->
+
+</div>
 <hr>
   <h2>credits</h2>
   <p>Firmware and configuration tool development with great support of the dadamachines community.</br> Thanks to <a href="https://github.com/lefty71" target="_blank">Justin Pedro</a> and <a href="https://github.com/jellea" target="_blank">Jelle Akkerman</a>
 </br>
 </br>
 </p>
+
 
   </main>
 
@@ -421,6 +444,7 @@
                             updateMaxMinRange(12, input, value);
                             });
     </script>
+  <script src="sequencer.js"></script>
 
 </body>
 </html>

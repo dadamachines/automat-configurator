@@ -194,3 +194,36 @@ table.config__table td {
 #sysex_config {
   color: red;
 }
+
+#when-connected {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+#when-connected.connected {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #222;
+  display: inline-block;
+  margin: 6px 6px 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.step.on {
+  background-color: lightblue;
+}
+.step.accent {
+  background-color: blue;
+}
+
+.step.playhead {
+  background-color: red;
+}

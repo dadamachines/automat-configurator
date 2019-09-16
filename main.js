@@ -183,6 +183,8 @@ function connect (){
       if (output && input) {
                  conne.innerText = "automat connected";
                  conne.style.color = "#47b535";
+                 var whencon = document.getElementById("when-connected")
+                 whencon.className = "connected"
                  readVersion();
                  readSysex();
       } else {
@@ -598,3 +600,4 @@ async function updateMaxMinRange(index, input, value) {
                                   output.sendSysex([0, 0x21, 0x3D], message);
                                   timeoutId = undefined;} , 100);
  }
+
