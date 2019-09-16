@@ -182,11 +182,23 @@ function connect (){
       output = WebMidi.getOutputByName("dadamachines automat");
       input = WebMidi.getInputByName("dadamachines automat");
 
+      WebMidi.addListener("disconnected", function(){
+        conne.innerText = "automat not connected, please accept web midi and connect automat";
+        conne.style.color = "#222";
+        var whencon = document.getElementById("when-connected")
+        whencon.className = ""
+        var recon = document.getElementById("reconbut")
+        recon.style = ""
+        
+      })
+
       if (output && input) {
                  conne.innerText = "automat connected";
                  conne.style.color = "#47b535";
                  var whencon = document.getElementById("when-connected")
                  whencon.className = "connected"
+                 var recon = document.getElementById("reconbut")
+                 recon.style = "display:none"
                  readVersion();
                  readSysex();
       } else {
