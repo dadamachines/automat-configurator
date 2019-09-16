@@ -11,7 +11,7 @@ for (y = 1; y < 12; y++) {
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-var audioContext = new AudioContext();
+var audioContext = null;
 var nextNotetime = null;
 var timerID = null;
 
@@ -53,6 +53,9 @@ var app = new Vue({
                 clearTimeout(timerID);
                 this.playing = false;
             } else {
+                if(!audioContext){
+                    audioContext = new AudioContext()
+                }
                 nextNotetime = audioContext.currentTime;
                 this.playing = true;
                 this.scheduler()
