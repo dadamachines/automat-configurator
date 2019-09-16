@@ -206,15 +206,15 @@ table.config__table td {
 }
 
 button.step {
-  width: 30px;
-  height: 30px;
-  border: 2px solid #222;
+  width: 35px;
+  height: 35px;
+  border: 3px solid #222;
   display: inline-block;
   margin: 6px 6px 0 0;
   padding: 0;
   box-sizing: border-box;
   background-color: white;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 .step.on {
   background-color: lightblue;
@@ -224,7 +224,7 @@ button.step {
 }
 
 .step.playhead {
-  background-color: red;
+  background-color: tomato;
 }
 
 .bpminput {

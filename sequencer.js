@@ -49,6 +49,15 @@ var app = new Vue({
 
             timerID = window.setTimeout(this.scheduler, 50.0);
         },
+        clearPattern: function(){
+            for (y = 0; y < 12; y++) {
+                fourfour[y] = []
+                for (x = 0; x < 16; x++) {
+                    fourfour[y][x] = null
+                }
+            }
+            Vue.set(this.steps, fourfour)
+        },
         playToggle: function () {
             if (this.playing !== false) {
                 clearTimeout(timerID);

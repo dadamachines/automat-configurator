@@ -27,16 +27,18 @@
     <h1 id="ac-headline">automat – configurator</h1>
     <h3 id="connected">automat not connected, please accept web midi and connect automat</h3>
     <p id="reconbut">
-      <button onclick="connect()">Reconnect</button>
+      <button onclick="connect()" class="bb">Reconnect</button>
     </p>
     <hr>
     <div id="when-connected">
     <h2>sequencer</h2>
-    <div id="sequencer">
-        <button v-if="playing" v-on:click="playToggle">pause</button>
-        <button v-else v-on:click="playToggle">play</button>
+    <div id="sequencer" style="display: inline-block;">
+        <button v-if="playing" v-on:click="playToggle">Pause</button>
+        <button v-else v-on:click="playToggle">Play</button>
     
         <input v-model.number="tempo" type="number" class="bpminput">
+
+        <button v-on:click="clearPattern" style="float:right;margin-right:6px">Clear</button>
     
         <div v-for="track in expanded">
             <div class="row">
@@ -48,7 +50,7 @@
             </div>
         </div>
         <p>
-            <a v-if="(expanded == 4)" v-on:click="expanded=12" href="#">show all tracks</a>
+            <a v-if="(expanded == 4)" v-on:click="expanded=12" href="#">show all 12 tracks</a>
             <a v-else v-on:click.stop="expanded=4" href="#">hide tracks</a>
              - double click for accent
         </p>
